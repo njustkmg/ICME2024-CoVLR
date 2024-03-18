@@ -1,0 +1,13 @@
+python3 -m torch.distributed.launch --nproc_per_node=5 --use_env Retrieval.py --config configs/Retrieval_flickr.yaml --output_dir "output/f30k" --bs 40 --checkpoint "output/f30k/" --dist_url tcp://localhost:10013
+
+
+python3 -m torch.distributed.launch --nproc_per_node=2 --use_env Retrieval.py --config configs/Retrieval_flickr.yaml --output_dir "output/f30k" --bs 16 --checkpoint "output/f30k/" --dist_url tcp://localhost:10013
+
+python3 -m torch.distributed.launch --nproc_per_node=1 --use_env Retrieval.py --config configs/Retrieval_flickr.yaml --output_dir "output/f30k" --bs 10 --checkpoint "output/f30k/" --dist_url tcp://localhost:10016
+
+python3 -m torch.distributed.launch --nproc_per_node=3 --use_env Retrieval.py --config configs/Retrieval_flickr.yaml --output_dir "output/f30k_CE_contras_5_0.2" --bs 63 --dist_url tcp://localhost:10018
+
+python3 -m torch.distributed.launch --nproc_per_node=1 --use_env Retrieval.py --config configs/Retrieval_flickr.yaml --output_dir "output/f30k_CE_contras_5_0.2" --bs 63 --dist_url tcp://localhost:10018
+
+
+python3 -m torch.distributed.launch --nproc_per_node=3 --use_env Retrieval.py --config configs/Retrieval_coco.yaml --output_dir "output/coco_CE_contras_10_0.4_10" --bs 63 --dist_url tcp://localhost:10018
